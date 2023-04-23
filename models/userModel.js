@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const userSchema= new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:true,
+        alias:"id"
     },
     email:{
         type:String,
@@ -14,6 +15,22 @@ const userSchema= new mongoose.Schema({
     hobbies:{
         type:String,
         enum:['cricket','song','football']
+    },
+    age:{
+        type:Number,
+        validate:{
+            validator: v => v>13,
+            message:props =>`${props.value} must grater than 13`
+        }
+    },
+    createdAt:{
+        type:Date,
+        immutable:true,
+        default:()=>Date.now()
+    },
+    updatedAt:{
+        type:Date,
+        default:()=>Date.now()
     }
 })
 

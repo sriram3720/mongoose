@@ -13,11 +13,15 @@ async function saveUser(){
     try{
 
         const userInFo = await User.create({
-            name:"pr",
+            id:"pr",
             email:"Prem123@gmail.com",
-            hobbies:'cricket'
+            hobbies:'cricket',
+          
+            age:23
         });
         console.log(`userinfo is saved ${userInFo}`)
+      const addGang = await User.deleteMany({name:'pr'});
+      console.log(`fin ${addGang}`)
     }
     catch(err){
         console.log(`user info is failed to save ${err.message}`)
